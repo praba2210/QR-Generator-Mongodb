@@ -1,0 +1,26 @@
+{% extends 'base.html' %} 
+
+{% block head %}
+<title>Join</title>
+{% endblock %}
+
+{%block body%}
+<div>
+    <h1>Registration Form</h1>
+    <form action="{{ url_for('/join') }}" method="POST">
+     <label>Name</label>
+     <input type="text" name="name">
+     <label>College Name</label>
+     <input type="text" name="college">
+     <label>Department</label>
+     <input type="text" name="dept">
+     <label>Year</label>
+     <input type="number" name="year">
+     <label>Phone no.</label>
+     <input type="number" name="no">
+     <label>Email</label>
+     <input type="email" name="email">
+     <input type="submit" value="Join">
+    </form>
+   </div>
+{%endblock%}
