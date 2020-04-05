@@ -4,7 +4,7 @@ import pyqrcode
 import qrtools
 from pymongo import MongoClient
 
-app =Flask(__name__)
+app = Flask(__name__)
 
 client = MongoClient('localhost', 27017)
 QRdb = client["QRGen"] 
@@ -14,7 +14,7 @@ students = client.QRGen.students
 def index(): 
     return render_template('index.html')
 
-@app.route('/join', method=['POST'])
+@app.route('/join', methods=['POST'])
 def qrgen():
     name = request.form['name']
     college = request.form['college']
@@ -24,7 +24,7 @@ def qrgen():
     email = request.form['email']
     students.insert({"name":name, "College":college, "Department":dept,"Year":year,"Phone":ph,"Email":email})
     qr = pyqrcode.create(name+","+college+","+dept+","+year+","+ph+","+email) 
-    qr.png("qrimg.png", scale=6) 
+    qr.png(file="qrimg.png", scale=6) 
     return render_template('payment.html')
 
 if __name__ == "__main__":
